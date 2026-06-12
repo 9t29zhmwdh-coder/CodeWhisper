@@ -32,11 +32,11 @@ Select code, right-click → Services → CodeWhisper: Explain. That's it.
 
 | Provider | Notes |
 |---|---|
-| Claude (Anthropic) | claude-sonnet-4-6 default |
-| OpenAI | gpt-4o default |
-| Mistral | mistral-large-latest default |
-| Ollama | local, configurable host/port |
+| Ollama | local, privacy-first, configurable host/port |
 | llama.cpp | local, configurable host/port |
+| Claude (Anthropic) | cloud, configurable API key |
+| OpenAI | cloud, configurable API key |
+| Mistral | cloud, configurable API key |
 
 ### Output Modes
 
@@ -83,7 +83,7 @@ make install
 
 ```
 Sources/CodeWhisper/
-├── LLM/               — Provider protocol + Claude / OpenAI-compat / Ollama / llama.cpp
+├── LLM/               — Provider protocol + Ollama / llama.cpp / any OpenAI-compatible API
 ├── PromptEngine/      — Presets and prompt builder
 ├── ResponseFormatter/ — Markdown trim, code block extraction
 ├── OutputEngine/      — Popup, clipboard, notification, paste-back
