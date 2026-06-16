@@ -10,6 +10,7 @@
 
 Select code, right-click → Services → CodeWhisper: Explain. That's it.
 
+[![CI](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions/workflows/ci.yml)
 ![Swift](https://img.shields.io/badge/Swift-5.9+-orange?logo=swift)
 ![macOS](https://img.shields.io/badge/macOS-14+-lightgrey?logo=apple)
 ![License](https://img.shields.io/badge/License-MIT-green)
