@@ -6,7 +6,7 @@
 
 [🇬🇧 English Version](README.md)
 
-**macOS KI-Code-Assistent — direkt in Xcode und jeden Texteditor via System-Services integriert.**
+**macOS KI-Code-Assistent, direkt in Xcode und jeden Texteditor via System-Services integriert.**
 
 Code markieren, Rechtsklick → Services → CodeWhisper: Explain. Fertig.
 
@@ -40,10 +40,10 @@ Code markieren, Rechtsklick → Services → CodeWhisper: Explain. Fertig.
 
 ### Ausgabe-Modi
 
-- **Popup-Fenster** — schwebendes Panel mit «Kopieren»- und «Zurückpaste»-Schaltfläche
-- **In Zwischenablage kopieren** — lautlos + kurze Benachrichtigung
-- **macOS-Benachrichtigung** — im Benachrichtigungszentrum
-- **Zurückpaste** — ersetzt den markierten Text im Editor (erfordert Bedienungshilfen-Berechtigung)
+- **Popup-Fenster**: schwebendes Panel mit «Kopieren»- und «Zurückpaste»-Schaltfläche
+- **In Zwischenablage kopieren**: lautlos + kurze Benachrichtigung
+- **macOS-Benachrichtigung**: im Benachrichtigungszentrum
+- **Zurückpaste**: ersetzt den markierten Text im Editor (erfordert Bedienungshilfen-Berechtigung)
 
 ---
 
@@ -69,7 +69,7 @@ make install
 
 ## Erste Einrichtung
 
-1. `/Applications/CodeWhisper.app` öffnen — ein `</>` Symbol erscheint in der Menüleiste.
+1. `/Applications/CodeWhisper.app` öffnen; ein `</>` Symbol erscheint in der Menüleiste.
 2. Darauf klicken → **Einstellungen** → KI-Anbieter wählen und API-Key eingeben.
 3. Die App einmal neu starten (Beenden → erneut öffnen), damit die Services-Einträge aktiv werden.
 4. In Xcode (oder einem anderen Editor): Code markieren → Rechtsklick → **Services** → **CodeWhisper: Explain**.
