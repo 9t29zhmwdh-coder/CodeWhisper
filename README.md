@@ -6,7 +6,7 @@
 
 [🇩🇪 Deutsche Version](README.de.md)
 
-**macOS AI code assistant — integrated directly into Xcode and any text editor via System Services.**
+**macOS AI code assistant integrated directly into Xcode and any text editor via System Services.**
 
 Select code, right-click → Services → CodeWhisper: Explain. That's it.
 
@@ -41,10 +41,10 @@ Select code, right-click → Services → CodeWhisper: Explain. That's it.
 
 ### Output Modes
 
-- **Popup Window** — floating panel with Copy and Paste Back buttons
-- **Copy to Clipboard** — silent, plus a brief notification
-- **macOS Notification** — Notification Center
-- **Paste Back** — replaces the selected text in the editor (requires Accessibility permission)
+- **Popup Window**: floating panel with Copy and Paste Back buttons
+- **Copy to Clipboard**: silent, plus a brief notification
+- **macOS Notification**: Notification Center
+- **Paste Back**: replaces the selected text in the editor (requires Accessibility permission)
 
 ---
 
@@ -70,7 +70,7 @@ make install
 
 ## First Launch
 
-1. Open `/Applications/CodeWhisper.app` — a `</>` icon appears in the menu bar.
+1. Open `/Applications/CodeWhisper.app`; a `</>` icon appears in the menu bar.
 2. Click it → **Settings** → choose your provider and enter the API key.
 3. Restart the menu bar app once (Quit → reopen) to activate the Services entries.
 4. In Xcode (or any editor): select code → right-click → **Services** → **CodeWhisper: Explain**.
