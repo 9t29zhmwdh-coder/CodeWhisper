@@ -6,7 +6,7 @@
 
 [🇬🇧 English Version](README.md)
 
-**macOS KI-Code-Assistent, direkt in Xcode und jeden Texteditor via System-Services integriert.**
+**macOS AI-Code-Assistent, direkt in Xcode und jeden Texteditor via System-Services integriert.**
 
 Code markieren, Rechtsklick → Services → CodeWhisper: Explain. Fertig.
 
