@@ -82,14 +82,14 @@ make install
 
 ```
 Sources/CodeWhisper/
-├── LLM/               — Provider protocol + Ollama / llama.cpp / any OpenAI-compatible API
-├── PromptEngine/      — Presets and prompt builder
-├── ResponseFormatter/ — Markdown trim, code block extraction
-├── OutputEngine/      — Popup, clipboard, notification, paste-back
-├── Settings/          — Keychain, model, UserDefaults persistence
-├── UI/                — NSPanel popup, status bar menu
-├── AppDelegate.swift  — 7 NSServices selectors → shared pipeline
-└── main.swift         — .accessory activation policy
+├── LLM/               # Provider protocol + Ollama / llama.cpp / any OpenAI-compatible API
+├── PromptEngine/      # Presets and prompt builder
+├── ResponseFormatter/ # Markdown trim, code block extraction
+├── OutputEngine/      # Popup, clipboard, notification, paste-back
+├── Settings/          # Keychain, model, UserDefaults persistence
+├── UI/                # NSPanel popup, status bar menu
+├── AppDelegate.swift  # 7 NSServices selectors → shared pipeline
+└── main.swift         # .accessory activation policy
 ```
 
 ---
@@ -99,8 +99,8 @@ Sources/CodeWhisper/
 ```
 CodeWhisper/
 ├── Package.swift
-├── Info.plist         — NSServices registration (7 entries), LSUIElement = true
-├── Makefile           — build / bundle / install / clean
+├── Info.plist         # NSServices registration (7 entries), LSUIElement = true
+├── Makefile           # build / bundle / install / clean
 └── Sources/CodeWhisper/
 ```
 
