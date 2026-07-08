@@ -12,7 +12,13 @@ Code markieren, Rechtsklick → Services → CodeWhisper: Explain. Fertig.
 
 [![CI](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions) ![Apple Silicon](https://img.shields.io/badge/Apple-Silicon-000000?logo=apple&logoColor=white) ![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey?logo=apple&logoColor=black) ![Swift](https://img.shields.io/badge/Swift-F05138?logo=swift&logoColor=white) ![AI | Claude Code](https://img.shields.io/badge/AI-Claude_Code-black?logo=anthropic&logoColor=white) ![AI | Copilot](https://img.shields.io/badge/AI-Copilot-black?logo=github&logoColor=white) ![AI | Ollama](https://img.shields.io/badge/AI-Ollama-black?logo=ollama&logoColor=white)
 
+> **So läuft es:** CodeWhisper ist eine native Menüleisten-App ohne Dock-Icon und ohne separaten Hintergrunddienst; sie lebt vollständig in der Statusleiste und im macOS-Services-Menü, während sie läuft.
+
+![CodeWhisper](docs/screenshot.de.png)
+
 ---
+
+Die Oberfläche von CodeWhisper ist auf Englisch (Standard) und Deutsch verfügbar, sie folgt automatisch deiner Systemsprache; jederzeit überschreibbar unter Einstellungen → Allgemein.
 
 ## Funktionen
 
@@ -77,6 +83,17 @@ make install
 
 ---
 
+## Deinstallation / Aufräumen
+
+- `/Applications/CodeWhisper.app` löschen
+- Gespeicherte Einstellungen entfernen: `defaults delete com.9t29zhmwdh.CodeWhisper`
+- Gespeicherte API-Keys aus der Schlüsselbundverwaltung.app entfernen (suche nach "claudeAPIKey", "openAIAPIKey", "mistralAPIKey")
+- CodeWhisper vorher beenden (oder neu starten), damit die NSServices-Einträge aus dem Rechtsklick-Services-Menü verschwinden
+
+Es bleiben keine weiteren Dateien oder Hintergrunddienste zurück.
+
+---
+
 ## Architektur
 
 ```
@@ -86,6 +103,7 @@ Sources/CodeWhisper/
 ├── ResponseFormatter/ # Markdown-Trim, Code-Block-Extraktion
 ├── OutputEngine/      # Popup, Zwischenablage, Benachrichtigung, Zurückpaste
 ├── Settings/          # Keychain, Modell, UserDefaults-Persistenz
+├── Localization/      # L10n: EN/DE-Strings, Systemsprache-Erkennung + manueller Override
 ├── UI/                # NSPanel-Popup, Statusleisten-Menü
 ├── AppDelegate.swift  # 7 NSServices-Selektoren → gemeinsame Pipeline
 └── main.swift         # .accessory Aktivierungsrichtlinie

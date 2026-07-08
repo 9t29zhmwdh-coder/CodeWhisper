@@ -1,6 +1,6 @@
 import Foundation
 
-// Anthropic Messages API — format differs from OpenAI.
+// Anthropic Messages API, format differs from OpenAI.
 // System prompt is a top-level field; messages array contains only user/assistant turns.
 final class ClaudeProvider: LLMProvider, @unchecked Sendable {
     private let apiKey: String

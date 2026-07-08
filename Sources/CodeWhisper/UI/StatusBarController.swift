@@ -1,10 +1,12 @@
 import AppKit
 import SwiftUI
+import Combine
 
 @MainActor
 final class StatusBarController {
     private var statusItem: NSStatusItem!
     private var settingsWindowController: NSWindowController?
+    private var languageObserver: AnyCancellable?
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -13,6 +15,12 @@ final class StatusBarController {
                                    accessibilityDescription: "CodeWhisper")
         }
         buildMenu()
+        // @Published's publisher fires during willSet, before the new value is actually
+        // stored; deferring to the next run loop turn ensures buildMenu() reads the
+        // already-updated override instead of the stale one.
+        languageObserver = L10n.shared.$override.sink { [weak self] _ in
+            DispatchQueue.main.async { self?.buildMenu() }
+        }
     }
 
     private func buildMenu() {
@@ -23,12 +31,12 @@ final class StatusBarController {
         menu.addItem(title)
         menu.addItem(.separator())
 
-        menu.addItem(NSMenuItem(title: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
+        menu.addItem(NSMenuItem(title: L10n.shared.t("statusbar.settings"), action: #selector(openSettings), keyEquivalent: ",")
             .then { $0.target = self })
 
         menu.addItem(.separator())
 
-        menu.addItem(NSMenuItem(title: "Quit CodeWhisper", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: L10n.shared.t("statusbar.quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
         statusItem.menu = menu
     }
@@ -47,7 +55,7 @@ final class StatusBarController {
             backing: .buffered,
             defer: false
         )
-        window.title = "CodeWhisper Settings"
+        window.title = L10n.shared.t("settings.windowTitle")
         window.contentView = view
         window.center()
 

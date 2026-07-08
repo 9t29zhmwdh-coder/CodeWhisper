@@ -21,7 +21,7 @@ install: bundle
 	rm -rf $(INSTALL)
 	cp -r $(BUNDLE) /Applications/
 	/System/Library/CoreServices/pbs -flush
-	@echo "✓ Installed to /Applications — restart apps to see Services menu entries"
+	@echo "✓ Installed to /Applications, restart apps to see Services menu entries"
 
 clean:
 	rm -rf .build $(BUNDLE)

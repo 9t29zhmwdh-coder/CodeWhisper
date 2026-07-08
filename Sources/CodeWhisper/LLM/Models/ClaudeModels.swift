@@ -1,7 +1,7 @@
 import Foundation
 
 // Anthropic Messages API request/response types.
-// Different from OpenAI format — system prompt is a top-level field.
+// Different from OpenAI format: system prompt is a top-level field.
 
 struct ClaudeRequest: Encodable, Sendable {
     let model: String

@@ -5,9 +5,26 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [0.1.0] — 2026-06-15
+## [0.1.1] - 2026-07-08
+
 ### Added
-- Initial import: NSServices integration
-- Actions: Explain, Refactor, Optimize, Add Comments, Find Bugs, Write Tests
-- Ollama and llama.cpp backend support
-- Cloud AI provider support
+
+- English (default) and German UI, following the system language automatically, with a manual override in Settings → General (`Localization/L10n.swift`)
+
+### Fixed
+
+- Fixed em-dashes in source code comments and documentation
+- Corrected `SECURITY.md`'s claim that processing is "local-only by default"; the default provider is Claude (Anthropic API), a cloud service, unless the user switches to Ollama or llama.cpp
+- Corrected `ARCHITECTURE.md`'s file tree and design decisions to match the actual `Sources/CodeWhisper/` layout, and its claim that NSServices integration needs no Accessibility permission (Paste Back specifically does, since it synthesizes keystrokes)
+- Fixed the status bar menu not updating immediately when the language was switched at runtime; `@Published`'s publisher fires during `willSet`, before the new value is actually stored, so the menu rebuild read the stale language until deferred to the next run loop turn
+- Fixed `Info.plist`'s `CFBundleVersion`/`CFBundleShortVersionString` claiming `1.0.0`/`1.0` while the repository's actual release tag was `v0.1.0`; both now read `0.1.1`
+
+## [0.1.0] - 2026-06-15
+
+### Added
+
+- NSServices integration: 7 selectors (Explain, Refactor, Optimize, Add Comments, Find Bugs, Write Tests, Custom) in the right-click Services menu of any Cocoa text view
+- AI providers: Ollama, llama.cpp, Claude (Anthropic), OpenAI, Mistral
+- Output modes: popup window, clipboard, macOS notification, paste-back (replaces the selection in place)
+- Menu-bar-only app (`.accessory` activation policy), Settings window with Provider/Output/Presets tabs
+- API keys stored in the macOS Keychain

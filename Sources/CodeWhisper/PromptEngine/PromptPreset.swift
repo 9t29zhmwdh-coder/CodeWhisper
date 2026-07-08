@@ -39,6 +39,20 @@ enum PromptPreset: String, CaseIterable, Sendable {
         case .custom:      return "✨"
         }
     }
+
+    /// Localization key for L10n.t(_:); resolve at a @MainActor call site, not here,
+    /// so this enum can stay Sendable and rawValue stays stable for NSServices/persistence.
+    var localizationKey: String {
+        switch self {
+        case .explain:     return "preset.explain"
+        case .refactor:    return "preset.refactor"
+        case .optimize:    return "preset.optimize"
+        case .addComments: return "preset.addComments"
+        case .findBugs:    return "preset.findBugs"
+        case .writeTests:  return "preset.writeTests"
+        case .custom:      return "preset.custom"
+        }
+    }
 }
 
 struct CustomPreset: Codable, Sendable, Identifiable {

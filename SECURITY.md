@@ -16,9 +16,9 @@ I will respond within **48 hours** and work to resolve the issue promptly.
 
 ## Security Practices
 
-- All credentials stored in the OS system keychain (macOS Keychain, Windows DPAPI, Linux SecretService) — never in plain text files or environment files
+- All credentials stored in the macOS Keychain, never in plain text files or environment files
 - API keys and passwords require explicit user input and are never auto-filled
-- Local-only processing — no data is transmitted to external servers by default
+- The default AI provider is Claude (Anthropic API), a cloud service; code you select is sent to it unless you switch to a local provider (Ollama or llama.cpp) in Settings
 - All network communication uses TLS/HTTPS
 - Input validation at all system boundaries
 

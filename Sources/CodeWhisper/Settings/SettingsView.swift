@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject private var model = SettingsModel.shared
+    @ObservedObject private var l10n = L10n.shared
 
     @State private var claudeKey: String  = ""
     @State private var openAIKey: String  = ""
@@ -13,24 +14,26 @@ struct SettingsView: View {
     var body: some View {
         TabView {
             providerTab
-                .tabItem { Label("Provider", systemImage: "cpu") }
+                .tabItem { Label(l10n.t("settings.tab.provider"), systemImage: "cpu") }
             outputTab
-                .tabItem { Label("Output", systemImage: "square.and.arrow.up") }
+                .tabItem { Label(l10n.t("settings.tab.output"), systemImage: "square.and.arrow.up") }
             presetsTab
-                .tabItem { Label("Presets", systemImage: "text.badge.star") }
+                .tabItem { Label(l10n.t("settings.tab.presets"), systemImage: "text.badge.star") }
+            generalTab
+                .tabItem { Label(l10n.t("settings.tab.general"), systemImage: "globe") }
         }
         .padding(16)
         .frame(width: 520, height: 400)
         .onAppear { loadKeys() }
     }
 
-    // MARK: — Provider tab
+    // MARK: - Provider tab
 
     private var providerTab: some View {
         Form {
-            Picker("Provider", selection: $model.activeProvider) {
+            Picker(l10n.t("settings.provider.picker"), selection: $model.activeProvider) {
                 ForEach(SettingsModel.Provider.allCases, id: \.self) { p in
-                    Text(p.rawValue).tag(p)
+                    Text(p.displayName).tag(p)
                 }
             }
 
@@ -38,33 +41,33 @@ struct SettingsView: View {
 
             switch model.activeProvider {
             case .claude:
-                TextField("Claude Model", text: $model.claudeModel)
-                SecureField("API Key", text: $claudeKey)
+                TextField(l10n.t("settings.provider.claudeModel"), text: $model.claudeModel)
+                SecureField(l10n.t("settings.provider.apiKey"), text: $claudeKey)
                     .onChange(of: claudeKey) { _, new in model.claudeAPIKey = new }
 
             case .openai:
-                TextField("OpenAI Model", text: $model.openAIModel)
-                SecureField("API Key", text: $openAIKey)
+                TextField(l10n.t("settings.provider.openaiModel"), text: $model.openAIModel)
+                SecureField(l10n.t("settings.provider.apiKey"), text: $openAIKey)
                     .onChange(of: openAIKey) { _, new in model.openAIAPIKey = new }
 
             case .mistral:
-                TextField("Mistral Model", text: $model.mistralModel)
-                SecureField("API Key", text: $mistralKey)
+                TextField(l10n.t("settings.provider.mistralModel"), text: $model.mistralModel)
+                SecureField(l10n.t("settings.provider.apiKey"), text: $mistralKey)
                     .onChange(of: mistralKey) { _, new in model.mistralAPIKey = new }
 
             case .ollama:
-                TextField("Model name", text: $model.ollamaModel)
+                TextField(l10n.t("settings.provider.modelName"), text: $model.ollamaModel)
                 HStack {
-                    TextField("Host", text: $model.ollamaHost)
-                    TextField("Port", value: $model.ollamaPort, formatter: NumberFormatter())
+                    TextField(l10n.t("settings.provider.host"), text: $model.ollamaHost)
+                    TextField(l10n.t("settings.provider.port"), value: $model.ollamaPort, formatter: NumberFormatter())
                         .frame(width: 70)
                 }
 
             case .llamaCpp:
-                TextField("Model name", text: $model.llamaCppModel)
+                TextField(l10n.t("settings.provider.modelName"), text: $model.llamaCppModel)
                 HStack {
-                    TextField("Host", text: $model.llamaCppHost)
-                    TextField("Port", value: $model.llamaCppPort, formatter: NumberFormatter())
+                    TextField(l10n.t("settings.provider.host"), text: $model.llamaCppHost)
+                    TextField(l10n.t("settings.provider.port"), value: $model.llamaCppPort, formatter: NumberFormatter())
                         .frame(width: 70)
                 }
             }
@@ -72,12 +75,12 @@ struct SettingsView: View {
             Divider()
 
             HStack {
-                Text("Max Tokens")
+                Text(l10n.t("settings.provider.maxTokens"))
                 TextField("", value: $model.maxTokens, formatter: NumberFormatter())
                     .frame(width: 80)
             }
             HStack {
-                Text("Temperature")
+                Text(l10n.t("settings.provider.temperature"))
                 Slider(value: $model.temperature, in: 0...2, step: 0.05)
                 Text(String(format: "%.2f", model.temperature))
                     .frame(width: 40)
@@ -85,24 +88,24 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: — Output tab
+    // MARK: - Output tab
 
     private var outputTab: some View {
         Form {
-            Picker("Output Mode", selection: $model.outputMode) {
+            Picker(l10n.t("settings.output.mode"), selection: $model.outputMode) {
                 ForEach(OutputMode.allCases, id: \.self) { m in
-                    Text(m.rawValue).tag(m)
+                    Text(l10n.t(m.localizationKey)).tag(m)
                 }
             }
             .pickerStyle(.radioGroup)
         }
     }
 
-    // MARK: — Presets tab
+    // MARK: - Presets tab
 
     private var presetsTab: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Custom prompt for \"Custom\" preset:")
+            Text(l10n.t("settings.presets.customPromptLabel"))
                 .font(.headline)
             TextEditor(text: $model.customSystemPrompt)
                 .frame(height: 80)
@@ -110,7 +113,7 @@ struct SettingsView: View {
 
             Divider()
 
-            Text("Saved Custom Presets:")
+            Text(l10n.t("settings.presets.savedLabel"))
                 .font(.headline)
 
             List {
@@ -130,27 +133,44 @@ struct SettingsView: View {
             if showNewPreset {
                 GroupBox {
                     VStack(alignment: .leading, spacing: 6) {
-                        TextField("Name", text: $newPresetName)
+                        TextField(l10n.t("settings.presets.namePlaceholder"), text: $newPresetName)
                         TextEditor(text: $newPresetPrompt)
                             .frame(height: 60)
                             .border(Color.secondary.opacity(0.4))
                         HStack {
-                            Button("Add") {
+                            Button(l10n.t("settings.presets.add")) {
                                 guard !newPresetName.isEmpty else { return }
                                 model.customPresets.append(
                                     CustomPreset(id: UUID(), name: newPresetName, systemPrompt: newPresetPrompt)
                                 )
                                 newPresetName = ""; newPresetPrompt = ""; showNewPreset = false
                             }
-                            Button("Cancel") { showNewPreset = false }
+                            Button(l10n.t("settings.presets.cancel")) { showNewPreset = false }
                         }
                     }
                 }
             } else {
-                Button("+ New Preset") { showNewPreset = true }
+                Button(l10n.t("settings.presets.newPreset")) { showNewPreset = true }
             }
         }
         .padding(8)
+    }
+
+    // MARK: - General tab
+
+    private var generalTab: some View {
+        Form {
+            Picker(l10n.t("settings.general.language"), selection: Binding<AppLanguage?>(
+                get: { l10n.override },
+                set: { l10n.override = $0 }
+            )) {
+                Text(l10n.t("settings.general.languageSystem")).tag(AppLanguage?.none)
+                ForEach(AppLanguage.allCases, id: \.self) { lang in
+                    Text(lang.displayName).tag(AppLanguage?.some(lang))
+                }
+            }
+            .pickerStyle(.radioGroup)
+        }
     }
 
     private func loadKeys() {

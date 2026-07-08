@@ -13,7 +13,13 @@ Select code, right-click → Services → CodeWhisper: Explain. That's it.
 [![CI](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/CodeWhisper/actions) ![Apple Silicon](https://img.shields.io/badge/Apple-Silicon-000000?logo=apple&logoColor=white) ![Platform](https://img.shields.io/badge/Platform-macOS-lightgrey?logo=apple&logoColor=black) ![Swift](https://img.shields.io/badge/Swift-F05138?logo=swift&logoColor=white) ![AI | Claude Code](https://img.shields.io/badge/AI-Claude_Code-black?logo=anthropic&logoColor=white) ![AI | Copilot](https://img.shields.io/badge/AI-Copilot-black?logo=github&logoColor=white) ![AI | Ollama](https://img.shields.io/badge/AI-Ollama-black?logo=ollama&logoColor=white)
 ![macOS](https://img.shields.io/badge/macOS-14+-lightgrey?logo=apple)
 
+> **How it runs:** CodeWhisper is a native menu-bar app with no Dock icon and no separate background daemon; it lives entirely in the status bar and the macOS Services menu while running.
+
+![CodeWhisper](docs/screenshot.png)
+
 ---
+
+CodeWhisper's UI is available in English (default) and German, following your system language automatically; override it anytime in Settings → General.
 
 ## Features
 
@@ -78,6 +84,17 @@ make install
 
 ---
 
+## Uninstall / Cleanup
+
+- Delete `/Applications/CodeWhisper.app`
+- Remove stored settings: `defaults delete com.9t29zhmwdh.CodeWhisper`
+- Remove stored API keys from Keychain Access.app (search for "claudeAPIKey", "openAIAPIKey", "mistralAPIKey")
+- Quit CodeWhisper first (or restart) so the NSServices entries disappear from the right-click Services menu
+
+No other files or background services are left behind.
+
+---
+
 ## Architecture
 
 ```
@@ -87,6 +104,7 @@ Sources/CodeWhisper/
 ├── ResponseFormatter/ # Markdown trim, code block extraction
 ├── OutputEngine/      # Popup, clipboard, notification, paste-back
 ├── Settings/          # Keychain, model, UserDefaults persistence
+├── Localization/      # L10n: EN/DE strings, system-language detection + manual override
 ├── UI/                # NSPanel popup, status bar menu
 ├── AppDelegate.swift  # 7 NSServices selectors → shared pipeline
 └── main.swift         # .accessory activation policy
