@@ -12,14 +12,14 @@
 
 1. Fork the repository
 2. `git clone https://github.com/YOUR_USERNAME/CodeWhisper`
-3. Open in Xcode: `open CodeWhisper.xcodeproj` (or `.xcworkspace`)
-4. Build: `⌘+B`
+3. Open in Xcode: `open Package.swift` (this is a Swift Package, there is no `.xcodeproj`)
+4. Build: `⌘+B`, or `make install` to build, bundle, and install into `/Applications`
 
 ## Development Workflow
 
 1. Create a feature branch: `git checkout -b feature/xyz`
 2. Make your changes
-3. Build and run tests: `⌘+U`
+3. Build: `⌘+B` (there is currently no automated test suite, see ROADMAP.md)
 4. Commit: `git commit -m "[feat] description"`
 5. Push and open a Pull Request
 
@@ -30,12 +30,12 @@
 
 ## Commit Convention
 
-`[type] description` — where type is:
-- `[feat]` — new feature
-- `[fix]` — bug fix
-- `[docs]` — documentation only
-- `[refactor]` — code cleanup
-- `[test]` — tests only
+`[type] description`, where type is:
+- `[feat]`: new feature
+- `[fix]`: bug fix
+- `[docs]`: documentation only
+- `[refactor]`: code cleanup
+- `[test]`: tests only
 
 ## Questions?
 

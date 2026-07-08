@@ -7,6 +7,7 @@ struct ResponsePopupView: View {
     var onClose: (() -> Void)?
 
     @State private var isCopied = false
+    @ObservedObject private var l10n = L10n.shared
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -45,11 +46,11 @@ struct ResponsePopupView: View {
                 Spacer()
 
                 if onPasteBack != nil {
-                    Button("Paste Back") { onPasteBack?() }
+                    Button(l10n.t("popup.pasteBack")) { onPasteBack?() }
                         .keyboardShortcut(.return, modifiers: .command)
                 }
 
-                Button(isCopied ? "Copied!" : "Copy") {
+                Button(isCopied ? l10n.t("popup.copied") : l10n.t("popup.copy")) {
                     onCopy?()
                     isCopied = true
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { isCopied = false }
@@ -69,14 +70,15 @@ struct LoadingPopupView: View {
 
     @State private var dots = ""
     @State private var timer: Timer?
+    @ObservedObject private var l10n = L10n.shared
 
     var body: some View {
         VStack(spacing: 16) {
             ProgressView()
                 .controlSize(.large)
-            Text("Asking \(preset)\(dots)")
+            Text("\(l10n.t("popup.asking")) \(preset)\(dots)")
                 .foregroundStyle(.secondary)
-            Button("Cancel") { onCancel?() }
+            Button(l10n.t("popup.cancel")) { onCancel?() }
                 .buttonStyle(.borderless)
         }
         .frame(width: 260, height: 140)

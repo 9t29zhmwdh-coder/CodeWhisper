@@ -13,17 +13,17 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleVersion</key>
-    <string>1.0.0</string>
+    <string>0.1.1</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
+    <string>0.1.1</string>
     <key>LSMinimumSystemVersion</key>
     <string>14.0</string>
 
-    <!-- Hide Dock icon — menubar-only app -->
+    <!-- Hide Dock icon, menubar-only app -->
     <key>LSUIElement</key>
     <true/>
 
-    <!-- macOS Services entries — one per AI preset -->
+    <!-- macOS Services entries, one per AI preset -->
     <key>NSServices</key>
     <array>
         <dict>

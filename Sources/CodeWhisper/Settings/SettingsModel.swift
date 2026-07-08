@@ -12,39 +12,51 @@ final class SettingsModel: ObservableObject {
         case mistral   = "Mistral"
         case ollama    = "Ollama (local)"
         case llamaCpp  = "llama.cpp (local)"
+
+        /// Localized display name; rawValue stays stable for UserDefaults persistence.
+        @MainActor var displayName: String {
+            switch self {
+            case .claude, .openai, .mistral:
+                return rawValue
+            case .ollama:
+                return "Ollama \(L10n.shared.t("provider.suffixLocal"))"
+            case .llamaCpp:
+                return "llama.cpp \(L10n.shared.t("provider.suffixLocal"))"
+            }
+        }
     }
 
-    // MARK: — Provider selection
+    // MARK: - Provider selection
     @Published var activeProvider: Provider {
         didSet { UserDefaults.standard.set(activeProvider.rawValue, forKey: "activeProvider") }
     }
 
-    // MARK: — Models
+    // MARK: - Models
     @Published var claudeModel: String  { didSet { ud("claudeModel", claudeModel) } }
     @Published var openAIModel: String  { didSet { ud("openAIModel", openAIModel) } }
     @Published var mistralModel: String { didSet { ud("mistralModel", mistralModel) } }
     @Published var ollamaModel: String  { didSet { ud("ollamaModel", ollamaModel) } }
     @Published var llamaCppModel: String { didSet { ud("llamaCppModel", llamaCppModel) } }
 
-    // MARK: — Local server config
+    // MARK: - Local server config
     @Published var ollamaHost: String  { didSet { ud("ollamaHost", ollamaHost) } }
     @Published var ollamaPort: Int     { didSet { UserDefaults.standard.set(ollamaPort, forKey: "ollamaPort") } }
     @Published var llamaCppHost: String { didSet { ud("llamaCppHost", llamaCppHost) } }
     @Published var llamaCppPort: Int   { didSet { UserDefaults.standard.set(llamaCppPort, forKey: "llamaCppPort") } }
 
-    // MARK: — Generation params
+    // MARK: - Generation params
     @Published var maxTokens: Int    { didSet { UserDefaults.standard.set(maxTokens, forKey: "maxTokens") } }
     @Published var temperature: Double { didSet { UserDefaults.standard.set(temperature, forKey: "temperature") } }
 
-    // MARK: — Output
+    // MARK: - Output
     @Published var outputMode: OutputMode {
         didSet { ud("outputMode", outputMode.rawValue) }
     }
 
-    // MARK: — Custom prompt for .custom preset
+    // MARK: - Custom prompt for .custom preset
     @Published var customSystemPrompt: String { didSet { ud("customSystemPrompt", customSystemPrompt) } }
 
-    // MARK: — Custom presets
+    // MARK: - Custom presets
     @Published var customPresets: [CustomPreset] = [] {
         didSet {
             if let data = try? JSONEncoder().encode(customPresets) {
@@ -53,7 +65,7 @@ final class SettingsModel: ObservableObject {
         }
     }
 
-    // MARK: — API keys (Keychain)
+    // MARK: - API keys (Keychain)
     var claudeAPIKey: String {
         get { KeychainService.load(key: "claudeAPIKey") }
         set { KeychainService.save(key: "claudeAPIKey", value: newValue); objectWillChange.send() }

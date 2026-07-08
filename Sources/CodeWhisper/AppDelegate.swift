@@ -12,7 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // MARK: — Shared pipeline
+    // MARK: - Shared pipeline
 
     @MainActor private func handleService(pasteboard: NSPasteboard, preset: PromptPreset) {
         Self.callingApp = NSWorkspace.shared.frontmostApplication
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             customPrompt: settings.customSystemPrompt
         )
 
-        ResponseWindowController.shared.showLoading(preset: preset.rawValue) {
+        ResponseWindowController.shared.showLoading(preset: L10n.shared.t(preset.localizationKey)) {
             ResponseWindowController.shared.close()
         }
 
@@ -40,13 +40,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             } catch {
                 await MainActor.run {
-                    ResponseWindowController.shared.showResponse("Error: \(error.localizedDescription)")
+                    ResponseWindowController.shared.showResponse("\(L10n.shared.t("error.prefix")): \(error.localizedDescription)")
                 }
             }
         }
     }
 
-    // MARK: — NSServices selectors
+    // MARK: - NSServices selectors
 
     @objc func serviceExplain(_ pboard: NSPasteboard, userData: String?, error: AutoreleasingUnsafeMutablePointer<NSString?>?) {
         Task { @MainActor in self.handleService(pasteboard: pboard, preset: .explain) }
@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-// MARK: — UNUserNotificationCenter delegate stub
+// MARK: - UNUserNotificationCenter delegate stub
 
 import UserNotifications
 
