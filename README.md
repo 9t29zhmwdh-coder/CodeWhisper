@@ -21,6 +21,8 @@ Select code, right-click → Services → CodeWhisper: Explain. That's it.
 
 CodeWhisper's UI is available in English (default) and German, following your system language automatically; override it anytime in Settings → General.
 
+**In practice:** you select any code in any macOS app (Xcode, VS Code, a text editor, even a browser text field), right-click, choose one of CodeWhisper's actions from the Services submenu (Explain, Refactor, Optimize, Add Comments, Find Bugs, Write Tests, or a Custom prompt you define), and CodeWhisper sends that selection to whichever AI provider you configured in Settings (a cloud model like Claude, or a local model via Ollama/llama.cpp if you want nothing leaving your machine). The response then shows up the way you configured it: a floating popup window, copied to your clipboard, a macOS notification, or pasted directly back over your original selection.
+
 ## Features
 
 | Preset | What it does |
