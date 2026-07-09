@@ -60,6 +60,8 @@ CodeWhisper's UI is available in English (default) and German, following your sy
 - Xcode Command Line Tools (`xcode-select --install`)
 - Swift 5.9+
 
+> 🌱 New here? → [Step-by-step guide for beginners](GETTING_STARTED.md)
+
 ---
 
 ## Build & Install
