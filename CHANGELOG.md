@@ -5,19 +5,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## [0.1.3] - 2026-07-11
+## [0.2.3] - 2026-07-11
+
+### Fixed
+
+- SemVer correction: v0.1.1 added a genuine new feature (English/German UI with automatic system-language detection) but was versioned as a patch. Renumbered v0.1.1 through v0.1.3 to v0.2.0 through v0.2.2 (same commits, tags and releases recreated at identical SHAs), per the portfolio's SemVer discipline (patch = fix, minor = feature, major = finished product).
+
+## [0.2.2] - 2026-07-11
 
 ### Added
 
 - Documented Dual-Licensing assessment (Community-only) in ROADMAP.md.
 
-## [0.1.2] - 2026-07-11
+## [0.2.1] - 2026-07-11
 
 ### Fixed
 
 - Replaced the unmonitored security@raystudio.ch email in SECURITY.md with a GitHub Security Advisory link, matching the rest of the portfolio.
 
-## [0.1.1] - 2026-07-08
+## [0.2.0] - 2026-07-08
 
 ### Added
 
@@ -29,7 +35,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Corrected `SECURITY.md`'s claim that processing is "local-only by default"; the default provider is Claude (Anthropic API), a cloud service, unless the user switches to Ollama or llama.cpp
 - Corrected `ARCHITECTURE.md`'s file tree and design decisions to match the actual `Sources/CodeWhisper/` layout, and its claim that NSServices integration needs no Accessibility permission (Paste Back specifically does, since it synthesizes keystrokes)
 - Fixed the status bar menu not updating immediately when the language was switched at runtime; `@Published`'s publisher fires during `willSet`, before the new value is actually stored, so the menu rebuild read the stale language until deferred to the next run loop turn
-- Fixed `Info.plist`'s `CFBundleVersion`/`CFBundleShortVersionString` claiming `1.0.0`/`1.0` while the repository's actual release tag was `v0.1.0`; both now read `0.1.1`
+- Fixed `Info.plist`'s `CFBundleVersion`/`CFBundleShortVersionString` claiming `1.0.0`/`1.0` while the repository's actual release tag was `v0.1.0`; both now read `0.2.0`
 
 ## [0.1.0] - 2026-06-15
 
