@@ -2,19 +2,19 @@
 
 This guide is for people who have never used a terminal or built a macOS app before. It walks you through every step, from opening a terminal to using CodeWhisper inside Xcode or any editor.
 
-> 🇩🇪 Looking for German instructions? There isn't a translated version of this guide yet — but the commands below work the same regardless of language.
+> 🇩🇪 Looking for German instructions? There isn't a translated version of this guide yet, but the commands below work the same regardless of language.
 
 ---
 
 ### macOS
 
-CodeWhisper is a macOS-only app — it's built on Xcode's Command Line Tools and integrates via macOS System Services (NSServices), which don't exist on Windows or Linux.
+CodeWhisper is a macOS-only app: it's built on Xcode's Command Line Tools and integrates via macOS System Services (NSServices), which don't exist on Windows or Linux.
 
 #### 1. Open a terminal
 
 1. Press **Cmd + Space** to open Spotlight.
 2. Type **Terminal** and press **Enter**.
-3. A window with a blinking cursor opens — that's your terminal. You'll type commands into it and press **Enter** to run them.
+3. A window with a blinking cursor opens: that's your terminal. You'll type commands into it and press **Enter** to run them.
 
 #### 2. Check your prerequisites
 
@@ -30,7 +30,7 @@ You should see something like `Swift version 5.9` or newer. macOS 14 (Sonoma) an
 xcode-select -p
 ```
 
-- **If this prints a path** (e.g. `/Library/Developer/CommandLineTools`), you're set — skip to step 3.
+- **If this prints a path** (e.g. `/Library/Developer/CommandLineTools`), you're set; skip to step 3.
 - **If it prints an error** like `xcode-select: error: unable to get active developer directory`, the Command Line Tools aren't installed yet.
 
 To install them:
@@ -43,7 +43,7 @@ This opens a small installer window. It downloads Apple's compiler and build too
 
 #### 3. Get the CodeWhisper code
 
-You don't need Git for this — a plain ZIP download works fine:
+You don't need Git for this. A plain ZIP download works fine:
 
 1. Go to the [CodeWhisper GitHub page](https://github.com/9t29zhmwdh-coder/CodeWhisper).
 2. Click the green **Code** button → **Download ZIP**.
