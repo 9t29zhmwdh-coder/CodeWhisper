@@ -5,6 +5,17 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.4] - 2026-07-12
+
+### Added
+
+- Release workflow (`release.yml`) building the `.app` bundle via the existing `make bundle` target, packaging it into a DMG, and attaching it to a GitHub Release on every `v*` tag push. Previously the only install path was building from source.
+- README download section (macOS DMG) in both English and German.
+
+### Fixed
+
+- Pinned the `actions/checkout` action in `ci.yml` to a commit SHA instead of a mutable tag, per the portfolio's supply-chain integrity standard.
+
 ## [0.2.3] - 2026-07-11
 
 ### Fixed

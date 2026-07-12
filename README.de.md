@@ -18,6 +18,10 @@ Code markieren, Rechtsklick → Services → CodeWhisper: Explain. Fertig.
 
 ---
 
+> 💾 **Download:** [macOS (DMG)](https://github.com/9t29zhmwdh-coder/CodeWhisper/releases/latest/download/CodeWhisper.dmg): immer die neueste Version, nicht codesigniert/notarisiert (Gatekeeper warnt beim ersten Start, Rechtsklick → Öffnen). Oder aus dem Quellcode bauen, siehe Build & Install unten.
+
+---
+
 > 🌱 Neu hier? → [Schritt-für-Schritt-Anleitung für Einsteiger](GETTING_STARTED.md)
 
 ---
