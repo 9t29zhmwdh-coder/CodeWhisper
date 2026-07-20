@@ -12,5 +12,13 @@ let package = Package(
                 .enableExperimentalFeature("StrictConcurrency"),
             ]
         ),
+        .testTarget(
+            name: "CodeWhisperTests",
+            dependencies: ["CodeWhisper"],
+            path: "Tests/CodeWhisperTests",
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency"),
+            ]
+        ),
     ]
 )
