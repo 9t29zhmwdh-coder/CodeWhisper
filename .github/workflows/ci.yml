@@ -17,3 +17,22 @@ jobs:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - name: Build
         run: swift build 2>&1
+  test:
+    name: Test
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - name: Test
+        run: swift test --enable-code-coverage 2>&1
+      - name: Coverage summary
+        run: |
+          BIN_PATH=$(swift build --show-bin-path)
+          XCTEST_PATH=$(find "$BIN_PATH" -name '*.xctest' | head -n 1)
+          if [ -n "$XCTEST_PATH" ]; then
+            BINARY="$XCTEST_PATH/Contents/MacOS/$(basename "$XCTEST_PATH" .xctest)"
+            if [ -f "$BINARY" ]; then
+              xcrun llvm-cov report "$BINARY" \
+                -instr-profile="$BIN_PATH/codecov/default.profdata" \
+                -ignore-filename-regex=".build|Tests" 2>&1
+            fi
+          fi
